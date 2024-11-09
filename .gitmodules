@@ -1,0 +1,3 @@
+[submodule "shadfin_app/bundle/web"]
+	path = shadfin_app/bundle/web
+	url = https://github.com/Shadfin/app
