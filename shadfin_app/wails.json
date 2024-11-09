@@ -1,0 +1,26 @@
+{
+  "$schema": "https://wails.io/schemas/config.v2.json",
+  "name": "Shadfin",
+  "outputfilename": "shadfin_desktop",
+  "info": {
+    "companyName": "Shadfin",
+    "productName": "Shadfin Desktop",
+    "productVersion": "0.0.4",
+    "copyright": "Built with Wails",
+    "protocols": [{
+      "scheme": "shadfin",
+      "description": "Open in Shadfin"
+    }]
+  },
+  "frontend:dir": "./bundle/web",
+  "frontend:install": "bun install",
+  "build:dir": "./.build",
+  "frontend:build": "bun run generate",
+  "frontend:dev:build": "bun nuxi prepare",
+  "frontend:dev:watcher": "bun run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "Brys",
+    "email": "35676267+brys0@users.noreply.github.com"
+  }
+}

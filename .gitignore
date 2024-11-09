@@ -1,0 +1,6 @@
+./shadfin_app/.idea
+./shadfin_app/.vscode
+./shadfin_app/libmpv-2.dll
+./wails/wails.exe
+shadfin_app/libmpv-2.dll
+shadfin_app/.build/bin/
