@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"shadfin/player"
 	"time"
 	"unsafe"
@@ -66,13 +67,14 @@ func main() {
 	debounce := debounce.New(150 * time.Millisecond)
 	windowPlayer.SetOnResize(func() {
 		_, _, w, h := windowPlayer.InnerBounds()
-
+		println("Main window was resized!")
 		if app.Started {
 			runtime.EventsEmit(app.ctx, "APP_RESIZE")
-
+			println("Sent resize event to frontend")
 			debounce(func() {
 				runtime.WindowSetSize(app.ctx, w, h)
 				runtime.WindowSetPosition(app.ctx, 0, 0)
+				fmt.Printf("Updating webview size to: %vx%v\n", w, h)
 			})
 		}
 	})

@@ -5,7 +5,7 @@
   "info": {
     "companyName": "Shadfin",
     "productName": "Shadfin Desktop",
-    "productVersion": "0.0.4",
+    "productVersion": "0.0.5",
     "copyright": "Built with Wails",
     "protocols": [{
       "scheme": "shadfin",

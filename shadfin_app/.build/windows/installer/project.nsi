@@ -51,7 +51,6 @@ VIAddVersionKey "ProductName"     "${INFO_PRODUCTNAME}"
 ManifestDPIAware true
 
 !include "MUI2.nsh"
-
 !define MUI_COMPONENTSPAGE_SMALLDESC ;No value
 !define MUI_BGCOLOR "101213"
 !define MUI_TEXTCOLOR "FFFFFF"
@@ -75,7 +74,7 @@ ManifestDPIAware true
 #!finalize 'signtool --file "%1"'
 
 Name "${INFO_PRODUCTNAME}"
-OutFile "..\..\bin\${INFO_PROJECTNAME}-${ARCH}-installer.exe" # Name of the installer's file.
+OutFile "..\..\bin\${INFO_PROJECTNAME}-${ARCH}-v${INFO_PRODUCTVERSION}-installer.exe" # Name of the installer's file.
 InstallDir "$PROGRAMFILES64\${INFO_COMPANYNAME}\${INFO_PRODUCTNAME}" # Default installing folder ($PROGRAMFILES is Program Files folder).
 ShowInstDetails show # This will always show the installation details.
 
