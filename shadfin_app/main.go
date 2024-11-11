@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"shadfin/config"
 	"shadfin/player"
 	"time"
 	"unsafe"
@@ -44,6 +45,7 @@ func main() {
 
 	app := NewApp()
 	player := player.NewPlayer()
+	config := config.NewConfig()
 
 	app.OnStartup = func() {
 		println("on app start")
@@ -83,6 +85,7 @@ func main() {
 	getContext := func(ctx context.Context) {
 		app.setContext(ctx)
 		player.SetContext(ctx)
+		config.SetContext(ctx)
 	}
 	// Create application with options
 	err = wails.Run(&options.App{
@@ -113,6 +116,7 @@ func main() {
 		Bind: []interface{}{
 			app,
 			player,
+			config,
 		},
 	})
 

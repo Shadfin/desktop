@@ -9,6 +9,7 @@ require (
 	github.com/brys0/wui-layered/v2 v2.0.0-20241104192612-5aaf322666bc
 	github.com/gen2brain/go-mpv v0.2.3
 	github.com/gonutz/w32/v2 v2.11.1
+	github.com/vmihailenco/msgpack/v5 v5.4.1
 	github.com/wailsapp/wails/v2 v2.9.3-BRYS
 )
 
@@ -33,6 +34,7 @@ require (
 	github.com/tkrajina/go-reflector v0.5.6 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
 	github.com/valyala/fasttemplate v1.2.2 // indirect
+	github.com/vmihailenco/tagparser/v2 v2.0.0 // indirect
 	github.com/wailsapp/go-webview2 v1.0.17 // indirect
 	github.com/wailsapp/mimetype v1.4.1 // indirect
 	golang.org/x/crypto v0.23.0 // indirect

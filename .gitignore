@@ -6,3 +6,4 @@ shadfin_app/libmpv-2.dll
 shadfin_app/.build/bin/
 shadfin_app/bundle/web/.nuxt/
 shadfin_app/bundle/web/.output/
+shadfin_app/shadfin_app.cfg
