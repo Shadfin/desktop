@@ -14,10 +14,10 @@
     !define INFO_PRODUCTNAME "Shadfin Desktop"
 !endif
 !ifndef INFO_PRODUCTVERSION
-    !define INFO_PRODUCTVERSION "0.0.5"
+    !define INFO_PRODUCTVERSION "0.0.7"
 !endif
 !ifndef INFO_COPYRIGHT
-    !define INFO_COPYRIGHT "Built with Wails"
+    !define INFO_COPYRIGHT "Created by Brys0 (https://github.com/brys0)"
 !endif
 !ifndef PRODUCT_EXECUTABLE
     !define PRODUCT_EXECUTABLE "${INFO_PROJECTNAME}.exe"

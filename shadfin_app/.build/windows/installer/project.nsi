@@ -84,8 +84,8 @@ FunctionEnd
 
 Section
     !insertmacro wails.setShellContext
-
     !insertmacro wails.webview2runtime
+    SetShellVarContext current
 
     SetOutPath $INSTDIR
 
@@ -94,6 +94,7 @@ Section
 
     CreateShortcut "$SMPROGRAMS\${INFO_PRODUCTNAME}.lnk" "$INSTDIR\${PRODUCT_EXECUTABLE}"
     CreateShortCut "$DESKTOP\${INFO_PRODUCTNAME}.lnk" "$INSTDIR\${PRODUCT_EXECUTABLE}"
+    CreateDirectory "$APPDATA\com.shadfin.app"
 
     !insertmacro wails.associateFiles
     !insertmacro wails.associateCustomProtocols
@@ -104,13 +105,14 @@ SectionEnd
 Section "uninstall"
     !insertmacro wails.setShellContext
 
+    RMDir /r "$APPDATA\com.shadfin.app"
     RMDir /r "$AppData\${PRODUCT_EXECUTABLE}" # Remove the WebView2 DataPath
 
     RMDir /r $INSTDIR
 
     Delete "$SMPROGRAMS\${INFO_PRODUCTNAME}.lnk"
     Delete "$DESKTOP\${INFO_PRODUCTNAME}.lnk"
-
+   
     !insertmacro wails.unassociateFiles
     !insertmacro wails.unassociateCustomProtocols
 

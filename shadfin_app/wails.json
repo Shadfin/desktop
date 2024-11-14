@@ -5,8 +5,8 @@
   "info": {
     "companyName": "Shadfin",
     "productName": "Shadfin Desktop",
-    "productVersion": "0.0.6",
-    "copyright": "Built with Wails",
+    "productVersion": "0.0.7",
+    "copyright": "Created by Brys0 (https://github.com/brys0)",
     "protocols": [{
       "scheme": "shadfin",
       "description": "Open in Shadfin"

@@ -80,6 +80,11 @@ func main() {
 			})
 		}
 	})
+
+	windowPlayer.SetOnClose(func() {
+		runtime.Quit(app.ctx)
+	})
+
 	go windowPlayer.Show()
 
 	getContext := func(ctx context.Context) {

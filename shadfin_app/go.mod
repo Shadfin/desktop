@@ -9,6 +9,7 @@ require (
 	github.com/brys0/wui-layered/v2 v2.0.0-20241104192612-5aaf322666bc
 	github.com/gen2brain/go-mpv v0.2.3
 	github.com/gonutz/w32/v2 v2.11.1
+	github.com/mleku/appdata v1.0.0
 	github.com/vmihailenco/msgpack/v5 v5.4.1
 	github.com/wailsapp/wails/v2 v2.9.3-BRYS
 )

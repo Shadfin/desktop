@@ -8,8 +8,10 @@ import (
 	"log"
 	"os"
 	"path"
+	"runtime"
 	"sync"
 
+	"github.com/mleku/appdata"
 	"github.com/vmihailenco/msgpack/v5"
 )
 
@@ -31,15 +33,13 @@ type ConfigData struct {
 // NewApp creates a new App application struct
 func NewConfig() *Config {
 	cfg := &Config{mu: &sync.Mutex{}}
-	exe, err := os.Executable()
+	homeDir := UserHomeDir()
+	println("Home Directory is " + homeDir)
+	path_cf := appdata.GetDataDir("com.shadfin.app", true, "")
 
-	if err != nil {
-		panic(fmt.Sprintf("could not get executable dir: %v", err))
-	}
+	cfg.path = path.Join(homeDir + "\\com.shadfin.app\\shadfin_app.cfg")
 
-	cfg.path = path.Join(path.Dir(exe), "shadfin_app.cfg")
-
-	fmt.Printf("Config dir is %v\n", cfg.path)
+	fmt.Printf("Config dir is %v\n", path_cf)
 
 	cfg.WriteIfNotExists()
 	cfg.Read()
@@ -114,4 +114,15 @@ func (c *Config) Write() {
 // so we can call the runtime methods
 func (c *Config) SetContext(ctx context.Context) {
 	c.ctx = ctx
+}
+
+func UserHomeDir() string {
+	if runtime.GOOS == "windows" {
+		home := os.Getenv("APPDATA")
+		if home == "" {
+			home = os.Getenv("USERPROFILE")
+		}
+		return home
+	}
+	return os.Getenv("HOME")
 }
