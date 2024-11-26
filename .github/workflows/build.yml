@@ -23,13 +23,13 @@ jobs:
          #    os: 'macos-latest'
     runs-on: ${{ matrix.build.os }}
     steps:
-        - name: cd to shadfin_app
-          run: cd ./shadfin_app
-          shell: bash
         - name: Checkout
           uses: actions/checkout@v4
           with:
             submodules: recursive
+        - name: cd to shadfin_app
+          run: cd ./shadfin_app
+          shell: bash    
         - name: Setup GoLang
             # Setup and configure GoLang
           uses: actions/setup-go@v4
