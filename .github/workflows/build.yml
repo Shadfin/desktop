@@ -34,17 +34,14 @@ jobs:
           with:
             check-latest: true
             go-version: 1.23.3
-        - name: Set Go env
-          run: |
-            echo "GOCACHE=$(go env GOCACHE)" >> "$GITHUB_OUTPUT"
-            echo "GOMODCACHE=$(go env GOMODCACHE)" >> "$GITHUB_OUTPUT"
-            echo "GOVERSION=$(go env GOVERSION)" >> "$GITHUB_OUTPUT"
         - run: go version
           shell: bash 
         - name: Setup Bun
           uses: oven-sh/setup-bun@v2
         - name: Install Wails
           run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
+        - name: LS Dir
+          run: ls
         - name: Extract libmpv
           run: 7z x libmpv.7z
         - name: Build Release
