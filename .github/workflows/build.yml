@@ -50,18 +50,23 @@ jobs:
           uses: oven-sh/setup-bun@v2
         - name: Install Wails
           run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
-        - name: LS Dir
-          run: ls
         - name: Extract libmpv
           shell: bash
           run: |
             cd ./shadfin_app
             7z x libmpv.7z
-        - name: Build Release
+        - name: Build Release (Tag)
+          if: startsWith(github.ref, 'refs/tags/')
           run: |
             cd ./shadfin_app
             wails build -tags "pkgconfig,production,desktop,nocgo" -devtools -skipbindings -nsis
           shell: bash
+        - name: Build Artifact
+          if: ${{ !(startsWith(github.ref, 'refs/tags/')) }}
+          run: |
+            cd ./shadfin_app
+            wails build -tags "pkgconfig,production,desktop,nocgo" -windowsconsole -devtools -skipbindings -nsis
+          shell: bash      
         - uses: actions/upload-artifact@v3
           with:
             name: Automated Build
