@@ -43,7 +43,7 @@ jobs:
           uses: oven-sh/setup-bun@v2
         - name: Install Wails
           run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
-          shell: bas
+          shell: bash
         - name: Extract libmpv
           run: 7z x libmpv.7z
         - name: Build Release
