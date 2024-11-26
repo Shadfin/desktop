@@ -25,7 +25,7 @@ jobs:
          #    os: 'macos-latest'
     runs-on: ${{ matrix.build.os }}
     permissions:
-       contents: read
+       contents: write
        packages: write
        id-token: write
        attestations: write
@@ -69,7 +69,8 @@ jobs:
               shadfin_app/.build/bin/
               shadfin_app\.build\bin\*
         - name: Release
-          uses: softprops/action-gh-release@v1
+          uses: softprops/action-gh-release@v2
+          if: startsWith(github.ref, 'refs/tags/')
           with:
             files: |
               shadfin_app/.build/bin/*
