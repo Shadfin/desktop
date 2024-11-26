@@ -61,11 +61,11 @@ jobs:
           with:
             name: Automated Build
             path: |
-              shadfin_app/build/bin/
-              shadfin_app\build\bin\*
+              shadfin_app/.build/bin/
+              shadfin_app\.build\bin\*
         - name: Release
           uses: softprops/action-gh-release@v1
           with:
             files: |
-              shadfin_app/build/bin/*
+              shadfin_app/.build/bin/*
  
