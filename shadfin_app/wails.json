@@ -17,7 +17,7 @@
   "build:dir": "./.build",
   "frontend:build": "bun run generate",
   "frontend:dev:build": "bun nuxi prepare",
-  "frontend:dev:watcher": "bun run dev",
+  "frontend:dev:watcher": "bun run dev-desktop",
   "frontend:dev:serverUrl": "auto",
   "author": {
     "name": "Brys",
