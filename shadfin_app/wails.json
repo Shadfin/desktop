@@ -5,7 +5,7 @@
   "info": {
     "companyName": "Shadfin",
     "productName": "Shadfin Desktop",
-    "productVersion": "0.1.1-DEV",
+    "productVersion": "0.1.6",
     "copyright": "Created by Brys0 (https://github.com/brys0)",
     "protocols": [{
       "scheme": "shadfin",

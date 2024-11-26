@@ -93,7 +93,10 @@ func (p *Player) SetPlayerPause(paused bool) error {
 
 	// runtime.WindowFullscreen()
 	println("Paused state ", paused)
+	p.mutex.Lock()
 	p.handle.SetProperty("pause", mpv.FormatFlag, paused)
+	p.mutex.Unlock()
+
 	return nil
 }
 
@@ -104,7 +107,67 @@ func (p *Player) SetPlayerPosition(position_sec float64) error {
 
 	println("Setting playback head to ", position_sec)
 
+	p.mutex.Lock()
 	p.handle.SetProperty("time-pos", mpv.FormatDouble, position_sec)
+	p.mutex.Unlock()
+	return nil
+}
+
+func (p *Player) SetAudioTrack(track int) error {
+	// Make sure to not change the underlying thread context
+	r.LockOSThread()
+
+	// Once the event loop is done we can release the thread back to go
+	defer r.UnlockOSThread()
+	if p.handle == nil || !p.loop {
+		return fmt.Errorf("can not set audio track when no player is active")
+	}
+	track_str := "auto"
+
+	switch track {
+	case -1:
+		track_str = "no"
+	default:
+		track_str = strconv.Itoa(track)
+	}
+
+	p.mutex.Lock()
+	p.handle.Wakeup()
+	err := p.handle.SetOptionString("aid", track_str)
+	p.mutex.Unlock()
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (p *Player) SetSubtitleTrack(track int) error {
+	// Make sure to not change the underlying thread context
+	r.LockOSThread()
+
+	// Once the event loop is done we can release the thread back to go
+	defer r.UnlockOSThread()
+	if p.handle == nil || !p.loop {
+		return fmt.Errorf("can not set subtitle track when no player is active")
+	}
+	track_str := "auto"
+
+	switch track {
+	case -1:
+		track_str = "no"
+	default:
+		track_str = strconv.Itoa(track)
+	}
+
+	p.mutex.Lock()
+	err := p.handle.SetOptionString("sid", track_str)
+	p.mutex.Unlock()
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -154,11 +217,11 @@ func (p *Player) startMPV() {
 		panic(err)
 
 	}
-
-	err = p.handle.Command([]string{"loadfile", p.URL})
+	println("Trying to load file with url " + p.URL)
+	// We have to use command string for the purego implementation of go-mpv. Otherwise the data becomes corrupt
+	err = p.handle.CommandString(fmt.Sprintf("loadfile %s", p.URL))
 	if err != nil {
-		fmt.Printf("[p.handle.LoadFile]: %v (File: %v)\n", err, "balls")
-		fmt.Printf("That didnt work.")
+		fmt.Printf("[p.handle.LoadFile]: %v (File: %v)\n", err, p.URL)
 	}
 
 	// Start the MPV event loop

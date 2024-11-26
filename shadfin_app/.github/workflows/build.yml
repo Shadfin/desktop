@@ -1,0 +1,59 @@
+name: Desktop Build
+
+on:
+ push:
+  tags:
+    - '*'
+
+jobs:
+  build:
+    strategy:
+    # Failure in one platform build won't impact the others
+      fail-fast: false
+      matrix:
+        build:
+         # - name: 'App'
+         #   platform:  'linux/amd64'
+         #   os: 'ubuntu-latest'
+          - name: 'App'
+            platform:  'windows/amd64'
+            os: 'windows-latest'
+         # - name: 'App'
+         #    platform:  'darwin/universal'
+         #    os: 'macos-latest'
+    runs-on: ${{ matrix.build.os }}
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v4
+          with:
+            submodules: recursive
+        - name: Setup GoLang
+            # Setup and configure GoLang
+          uses: actions/setup-go@v4
+          with:
+            check-latest: true
+            go-version: 1.20
+        - run: go version
+          shell: bash 
+        - name: Setup Bun
+          uses: oven-sh/setup-bun@v2
+        - name: Install Wails
+          run: go install github.com/wailsapp/wails/v2/cmd/wails@latest
+          shell: bas
+        - name: Extract libmpv
+          run: 7z x libmpv.7z
+        - name: Build Release
+          run: wails build -tags "pkgconfig,production,desktop,nocgo" -devtools -skipbindings -nsis
+          shell: bash
+        - uses: actions/upload-artifact@v3
+          with:
+            name: Automated Build
+            path: |
+              */bin/
+              *\bin\*
+        - name: Release
+          uses: softprops/action-gh-release@v1
+          with:
+            files: |
+              */bin/*
+ 
