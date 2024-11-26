@@ -1,7 +1,12 @@
 name: Desktop Build
 
-on: [push]
-
+on: 
+  push:
+    branches:
+      - master
+    tags:
+      - '*'
+   
 jobs:
   build:
     strategy:
@@ -56,11 +61,11 @@ jobs:
           with:
             name: Automated Build
             path: |
-              */bin/
-              *\bin\*
+              shadfin_app/*/bin/
+              shadfin_app\*\bin\*
         - name: Release
           uses: softprops/action-gh-release@v1
           with:
             files: |
-              */bin/*
+              shadfin_app/*/bin/*
  
