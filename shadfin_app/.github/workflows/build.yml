@@ -28,7 +28,7 @@ jobs:
           with:
             submodules: recursive
         - name: cd to shadfin_app
-          run: cd ./desktop/shadfin_app
+          run: cd ./shadfin_app
           shell: bash    
         - name: Setup GoLang
             # Setup and configure GoLang
