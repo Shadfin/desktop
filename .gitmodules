@@ -1,3 +1,6 @@
 [submodule "shadfin_app/bundle/web"]
 	path = shadfin_app/bundle/web
 	url = https://github.com/Shadfin/app
+[submodule "wui-layered"]
+	path = wui-layered
+	url = https://github.com/brys0/wui-layered
