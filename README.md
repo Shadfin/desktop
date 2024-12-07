@@ -22,7 +22,7 @@ However doing so causes the webview to feel noticeably slower.
 
 A video at 24fps will cause the webview to also run at 24 fps, not good! 
 
-&lt;Insert Super Cool Animation Here&gt;
+![frame-copy](https://github.com/user-attachments/assets/e671fd11-f826-49ca-8461-6b5f96eb96f9)
 
 ### Solution 1: Don't sync the frames?
 
@@ -33,7 +33,7 @@ This not only disrupts the ability to use the webview it causes a noticeable fli
 
 If you've ever heard of "Z-Fighting" in game development this is essentially the same exact thing. We are wanting two things to be rendered at the same depth (or the Z cord) and they will fight each other to be on the top.
 
-&lt;Insert Z-Fighting animation here&gt;
+![2017-10-04_22-53-10](https://github.com/user-attachments/assets/175c14cc-8cd4-4e4b-876c-994e3759e6f1)
 
 ## Screw Sync - Maintain Order
 
