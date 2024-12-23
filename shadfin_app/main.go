@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"os"
 	"shadfin/config"
 	"shadfin/player"
 	"time"
@@ -31,7 +32,7 @@ func main() {
 	windowPlayer := wui.NewWindow()
 	windowPlayer.SetBounds(50, 50, 1024, 768)
 	windowPlayer.SetHasBorder(true)
-	windowPlayer.SetAlpha(255)
+	windowPlayer.SetAlpha(0)
 	windowPlayer.SetBackground(wui.Color(0))
 	windowPlayer.SetResizable(true)
 	windowPlayer.SetClassName("shadfin_app")
@@ -83,6 +84,7 @@ func main() {
 
 	windowPlayer.SetOnClose(func() {
 		runtime.Quit(app.ctx)
+		os.Exit(0)
 	})
 
 	go windowPlayer.Show()
@@ -91,6 +93,46 @@ func main() {
 		app.setContext(ctx)
 		player.SetContext(ctx)
 		config.SetContext(ctx)
+
+		// lastLocationX := 0
+		// lastLocationY := 0
+		// move := false
+
+		// windowPlayer.SetOnMouseMove(func(x, y int) {
+		// 	if !move {
+		// 		return
+		// 	}
+
+		// 	x, y, err := w32.GetCursorPos()
+
+		// 	if !err {
+		// 		log.Fatalf("BALLS")
+		// 	}
+
+		// 	w32.MoveWindow(w32.HWND(windowPlayer.Handle()), (x - lastLocationX), (y - lastLocationY), int(1024), int(768), false)
+		// })
+
+		// runtime.EventsOn(ctx, "custom-drag-stop", func(optionalData ...interface{}) {
+		// 	w32.ReleaseCapture()
+		// 	println("stopped move")
+		// 	move = false
+		// })
+
+		// runtime.EventsOn(ctx, "custom-drag", func(optionalData ...interface{}) {
+		// 	x, y, done := w32.GetCursorPos()
+
+		// 	println("SUP fucker")
+		// 	if !done {
+		// 		log.Fatalf("BALLS BALLS")
+		// 	}
+
+		// 	rectX, rectY := windowPlayer.Position()
+		// 	lastLocationX = x - rectX
+		// 	lastLocationY = y - rectY
+		// 	move = true
+
+		// 	w32.SetCapture(w32.HWND(windowPlayer.Handle()))
+		// })
 	}
 	// Create application with options
 	err = wails.Run(&options.App{
@@ -112,7 +154,7 @@ func main() {
 			WindowIsTranslucent:               true,
 			WebviewIsTransparent:              true,
 			LayeredWindow:                     true,
-			ParentWindow:                      0,
+			ParentWindow:                      windowPlayer.Handle(),
 			WindowClassName:                   "shadfin_webview",
 		},
 		Debug: options.Debug{

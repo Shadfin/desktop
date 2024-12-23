@@ -210,6 +210,8 @@ func (w *Window) IsVisible() bool {
 func (w *Window) WndProc(msg uint32, wparam, lparam uintptr) uintptr {
 
 	switch msg {
+	case w32.WM_MOUSEMOVE:
+		println("Got mouse move")
 	case win32.WM_POWERBROADCAST:
 		switch wparam {
 		case win32.PBT_APMSUSPEND:
