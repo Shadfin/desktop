@@ -93,47 +93,8 @@ func main() {
 		app.setContext(ctx)
 		player.SetContext(ctx)
 		config.SetContext(ctx)
-
-		// lastLocationX := 0
-		// lastLocationY := 0
-		// move := false
-
-		// windowPlayer.SetOnMouseMove(func(x, y int) {
-		// 	if !move {
-		// 		return
-		// 	}
-
-		// 	x, y, err := w32.GetCursorPos()
-
-		// 	if !err {
-		// 		log.Fatalf("BALLS")
-		// 	}
-
-		// 	w32.MoveWindow(w32.HWND(windowPlayer.Handle()), (x - lastLocationX), (y - lastLocationY), int(1024), int(768), false)
-		// })
-
-		// runtime.EventsOn(ctx, "custom-drag-stop", func(optionalData ...interface{}) {
-		// 	w32.ReleaseCapture()
-		// 	println("stopped move")
-		// 	move = false
-		// })
-
-		// runtime.EventsOn(ctx, "custom-drag", func(optionalData ...interface{}) {
-		// 	x, y, done := w32.GetCursorPos()
-
-		// 	println("SUP fucker")
-		// 	if !done {
-		// 		log.Fatalf("BALLS BALLS")
-		// 	}
-
-		// 	rectX, rectY := windowPlayer.Position()
-		// 	lastLocationX = x - rectX
-		// 	lastLocationY = y - rectY
-		// 	move = true
-
-		// 	w32.SetCapture(w32.HWND(windowPlayer.Handle()))
-		// })
 	}
+	
 	// Create application with options
 	err = wails.Run(&options.App{
 		Title:  "Shadfin",
